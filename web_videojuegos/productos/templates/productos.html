@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+    {% load humanize %}
+{% block content %}
+          <section class="bg-dark bg-gradient text-white text-center p-5">
+            <h1>Nuestra selección de Juegos y Consolas para Usted</h1>
+        </section>
+        <section class="container-fluid mt-5">
+                <div class="row">
+                {% for p in productos %}
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="card text-center">
+                            <div class="card-header bg-warning">
+                                <h4>{{p.titulo}}</h4>
+                            </div>
+                            <div class="card-body">
+                                <img src="{{p.imagen}}" class="img-prod text-center" alt="">
+                            </div>
+                            <div class="card-footer">
+                            {% if p.estaEnOferta %}
+                                <span class="badge bg-danger">OFERTA $ {{p.precio | intcomma}}</span>
+                            {%else %}
+
+                                <span>$ {{p.precio | intcomma}}</span>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+        </section>
+{% endblock %}
